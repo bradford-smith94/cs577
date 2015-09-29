@@ -1,0 +1,34 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 2 report.txt
+# 09/24/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+The included Makefile should be all that is required to build the system. It is
+dependent on `dictionary.txt` existing in this directory for the dictionary
+attack to work (this can be changed in the header file include/cracker.h) or you
+can just create a symlink (`ln -s <your dictionary> dictionary.txt`). The system
+is also dependent on the input files being in the same format as the examples
+given (where each line is "<something>:<password hash>").
+
+I started the assignment using C but after some messy malloc calls I moved the
+project to C++ so the final result is a mix of C and C++ all compiled as C++. As
+far as how it runs I chose to have the system first run the dictionary attack
+because it is fastest, then it runs the heuristic attacks because these are next
+fastest and finally the brute-force attack is run last because this is the most
+expensive operation.
+
+System designers could significantly hinder cracking efforts by either requiring
+long passwords, automatically using a strong salt, or using a slow hashing
+algorithm (or all of these together). Longer passwords are harder to brute-force
+and if the password is also required to have a number of symbols in it this will
+also make dictionary attacks harder. Cracking passwords without knowing the salt
+will be much harder as you would likely need to brute-force it. Finally using a
+slower hashing algorithm will increase the runtime of a brute-force attack so
+much so that it will either end up being impossible or extremely discouraging.
+
+Adding a salt makes passwords stronger, the attacker essentially has to guess
+two passwords. If the salt is a good mix of symbols and alphanumeric characters
+it may even force an attacker to use a brute-force attack because finding
+<password> + ab@3!g? in a dictionary or heuristic approach is even less likely
+than finding <password> by itself.

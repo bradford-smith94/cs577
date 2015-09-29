@@ -1,0 +1,9 @@
+*.o
+*.swp
+*.tar.gz
+
+Lab1/src/*.pem
+Lab1/openssl/*
+Lab1/bin/*
+Lab1/lib/*
+Lab1/include/openssl/*

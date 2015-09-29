@@ -1,0 +1,29 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 1 report.txt
+# 09/19/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+#####################################################################
+
+The project can be built using the Makefile under `src/` (`cd`ing into `src` and
+running `make` should be all that is necessary to build the project). My make
+test-* targets will only work if openssl is built in this directory or the
+Makefile variable is changed to point to openssl (note: that the test-client
+target makes use of s_client's -proxy option, so the openssl changed to would
+need to be made from git).
+
+I chose C because I couldn't decide what structure/objects etc. to use for C++.
+For the most part I tried to break everything up into logical blocks that made
+sense as functions. When doing this didn't work so well I piled a bunch of stuff
+into the main method, so main did get somewhat messy. I had attempted doing
+non-blocking I/O be did not have much luck with that so once the connection is
+established client and host will alternate being read by the proxy in a blocking
+I/O fashion.
+
+If an attack were to run a MitM attack against a client that was correctly verifying
+certificates the attacker would need to do one of three things:
+    1. Compromise a legitimate website, so that he could get their private key and
+        legitimately sign certificates as the website.
+    2. Compromise the user's browser into using a fake Certificate Authority (i.e.
+        the attacker's computer).
+    3. Compromise a Certificate Authority, so that he could use their private key to
+        legitimately sign certificates as the CA.
