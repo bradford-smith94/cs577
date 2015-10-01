@@ -21,7 +21,7 @@ void read_input(FILE *fp, char *buf, size_t len)
 	}
 }
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
 	read_input(stdin, mybuf, sizeof(mybuf));
 

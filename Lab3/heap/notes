@@ -1,0 +1,3 @@
+rbp at end of main: 0x7fffffffe450
+0x7fffffffe450 - 0x1000 (size of buffer) =
+        0x7fffffffd450 (position of buffer in main)

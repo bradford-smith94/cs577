@@ -6,6 +6,7 @@ all: $(TARGETS)
 
 
 s-proc: s-proc.o
+	$(CC) -z execstack $(LDFLAGS) -o $@ $<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< 

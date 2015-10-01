@@ -1,0 +1,8 @@
+objdump -d stack_overflow
+    echo_input starts at 0x4005c8 <echo_input+4>
+    echo_input ends at 0x40062d <echo_input+105>
+
+use those as breakpoints
+
+rbp at end of echo_input: 0x7fffffffe450
+0x7fffffffe450 - 0x108 = 0x7fffffffe348 (position of buffer)

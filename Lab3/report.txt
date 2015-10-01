@@ -1,0 +1,17 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 3 report.txt
+# 10/01/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+While working on the two exploits for this lab I had to create two separate
+`exploit.c` files (one for the stack overflow and one for the heap overflow).
+I also created one `hello.S` assembly shellcode that prints "Hello, World".
+
+The purpose the `exploit.c` files serve is to print a string to give to the
+vulnerable programs, these programs can be redirected to files for easy testing.
+When developing each of them I used a trial and error approach to find the right
+length to inject a return address at. To find the proper return address I used
+gdb and disassembled vulnerable methods to get the value of the rbp and
+then subtracted the length of the buffer to find the address of the beginning of
+the buffer (these can be found in the `notes` files which I have included).
