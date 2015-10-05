@@ -1,0 +1,23 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 4 report.txt
+# 10/05/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+While working on this lab I created separate `exploit.c` files for each attack.
+These C programs just generate strings that can be piped into `stack_overflow`
+in order to exploit it.
+
+For attack 1 I used trial and error increasing string length until I correctly
+overflowed the saved eip (return address). Then disassembling the program in
+gdb to find the address of the `unbelievable` function and placing this in the
+return address.
+
+For attack 2 I first set out to use the `printf` system call but had trouble
+passing it arguments and getting it to work properly, so I moved to using the
+`puts` function instead (which it appears `printf` with only a string literal
+compiles into) and had no problems using this. For this I disassembled the program
+and printed addresses of the symbols `printf` and `puts`.
+
+For attack 3 I used the same core exploit string as attack 2 but merely replaced
+some spacing characters with the address of the `exit` function.
