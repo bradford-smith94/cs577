@@ -1,0 +1,12 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 5 report.txt
+# 10/19/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+I created two shared libraries: `libprotect.so` and `liboverride.so`. The first
+is created so that those writing a new project can link against it and have
+access to protected versions of the 5 functions: malloc, free, calloc, realloc
+and memalign. The second library is created and linked against the first so that
+it overrides the glibc versions of malloc, free, calloc, realloc and memalign so
+that they call the versions in `libprotect.so`.

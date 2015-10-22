@@ -1,0 +1,2 @@
+to call original malloc from pmalloc:
+void * (* libc_malloc)(size_t)=dlsym(RTLD_NEXT, "malloc");
