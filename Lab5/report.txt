@@ -1,6 +1,6 @@
 # Bradford Smith (bsmith8)
 # CS 577 Lab 5 report.txt
-# 10/19/2015
+# 10/22/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
@@ -10,3 +10,13 @@ access to protected versions of the 5 functions: malloc, free, calloc, realloc
 and memalign. The second library is created and linked against the first so that
 it overrides the glibc versions of malloc, free, calloc, realloc and memalign so
 that they call the versions in `libprotect.so`.
+
+To override existing functions use: `export LD_PRELOAD=<path to liboverride.so>`
+and `export LD_LIBRARY_PATH=<path to folder containing libprotect.so>`.
+
+In theory these functions should prevent buffer overflow attacks by denying
+access to the area of memory just after an allocated buffer.
+
+This seems to protect the Lab3 programs from attack, but not the Lab4 program.
+For some reason trying to run this against the program from Lab4 results in a
+"could not preload" error message.

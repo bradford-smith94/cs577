@@ -26,6 +26,8 @@ struct s_meta
     void* ptr;
     /* total length of the block including padding, metadata and guard-page */
     size_t len;
+    /* length of the user buffer */
+    size_t buflen;
 };
 
 /* This is the header file that defines the protected versions of libc functions

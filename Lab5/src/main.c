@@ -12,6 +12,7 @@
 int main()
 {
     char* test;
+    char* test2;
 
 #ifdef DEBUG
     printf("[DEBUG]\tStarting debug testmain\n\n\n");
@@ -30,6 +31,20 @@ int main()
     fflush(stdout);
 
     free(test);
+
+    printf("It worked!\n");
+
+    printf("Tesing calloc with: %d and %lu\n", 10, (unsigned long)sizeof(char));
+    fflush(stdout);
+
+    test2 = (char*)calloc(10, sizeof(char));
+
+    printf("It worked!\n");
+
+    printf("Testing realloc with the calloc'd buffer and %d\n", 8);
+    fflush(stdout);
+
+    test2 = (char*)realloc(test2, 8);
 
     printf("It worked!\n");
     return 0;
