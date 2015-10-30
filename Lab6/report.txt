@@ -1,0 +1,7 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 6 report.txt
+# 10/29/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+The included Makefile can be used to build `detailed_report.pdf`.

@@ -1,0 +1,50 @@
+/**
+* Log a user in
+*
+* @param string $user User name
+* @param string $pass Password
+* @return bool
+*/
+function login($user, $pass)
+{
+if (!$user)
+{
+    return false;
+}
+
+//fixed by for CS 577 Lab 6 using `prepare` statement
+//note conn is defined in class.datenbank.php assuming we have access to that we can do this:
+$stmnt = $conn->prepare("SELECT ID,name,locale,lastlogin,gender FROMuser WHERE (name=? OR email=?) AND pass=?");
+
+$stmnt->bind_param("sss", $user, $user, sha1($pass));
+$stmnt->execute();
+$stmnt->bind_result($bind_ID, $bind_name, $bind_locale, $bind_lastlogin, $bind_gender);
+$chk = $stmnt->fetch();
+
+if ($bind_ID != "")
+{
+    $rolesobj = new roles();
+    $now = time();
+    $_SESSION['userid'] = $bind_ID;
+    $_SESSION['username'] = stripslashes($bind_name);
+    $_SESSION['lastlogin'] = $now;
+    $_SESSION['userlocale'] = $bind_locale;
+    $_SESSION['usergender'] = $bind_gender;
+    $_SESSION["userpermissions"] = $rolesobj->getUserRole($bind_ID);
+
+    $userid = $_SESSION['userid'];
+    $seid = session_id();
+    $staylogged = getArrayVal($_POST, 'staylogged');
+
+    if ($staylogged == 1)
+    {
+	setcookie("PHPSESSID", "$seid", time() + 14 * 24 * 3600);
+    }
+    $upd1 = mysql_query("UPDATE user SET lastlogin = '$now' WHERE ID = $userid");
+    return true;
+}
+else
+{
+    return false;
+}
+}
