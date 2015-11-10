@@ -1,6 +1,9 @@
 *.o
 *.swp
 *.tar.gz
+*.zip
+*.aux
+*.log
 
 Lab1/src/*.pem
 Lab1/openssl
