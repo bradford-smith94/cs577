@@ -1,7 +1,40 @@
 # Bradford Smith (bsmith8)
 # CS 577 Lab 7 report.txt
-# 11/09/2015
+# 11/10/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
+Setup:
+------
+First I had to add `/opt/android-sdk/tools/` to my PATH (this is the location of
+the android sdk tools. Then I had to run `sudo android` to update the android
+sdk targets. I also had to create an android virtual device using the GUI
+provided by `android avd`.
 
+Part 1:
+-------
+Part 1 is in the directory `HelloWorld/`. Here I setup an android project by
+running: `android create project -n HelloWorld -a MainActivity --target 1 -p .
+--package com.example.HelloWorld`. I ran `ant help` to see the build targets and
+then ran `ant debug` to compile the code. I ran `ant debug install` to
+install the app on the android virtual device. The app can then be run from the
+android virtual device.
+
+Part 2:
+-------
+Part 2 is in the directory `HelloWorldModified/`. I started by coping
+HelloWorld-debug.apk into the directory.
+
+Part 3:
+-------
+Part 3 is in the directory `ModifiedApp/`.
+
+References:
+-----------
+[1] wiki.archlinux.org/index.php/Android
+[2] incise.org/android-development-on-the-command-line.html
+[3] developer.android.com/tools/help/android.html
+[4] developer.android.com/tools/projects/projects-cmdline.html
+[5] davidrodriguez.io/blog/developing-android-apps-in-vim/
+[6] techpad.co.uk/content.php?sid=96
+[7] tutorialspoint.com/android/android_hello_world_example.htm
