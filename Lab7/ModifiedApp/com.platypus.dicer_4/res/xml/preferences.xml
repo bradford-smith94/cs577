@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference android:entries="@array/pref_numberofdies_listentries" android:title="@string/pref_numberofdies_title" android:key="PREF_NUMBEROFDIES" android:summary="@string/pref_numberofdies_summary" android:defaultValue="1" android:entryValues="@array/pref_numberofdies_listvalues" />
+    <CheckBoxPreference android:title="@string/pref_shaketoroll_title" android:key="PREF_SHAKETOROLL" android:summary="@string/pref_shaketoroll_summary" android:defaultValue="true" android:onClick="onShaketorollClick" />
+    <CheckBoxPreference android:title="@string/pref_vibrate_title" android:key="PREF_VIBRATE" android:summary="@string/pref_vibrate_summary" android:defaultValue="true" />
+    <Preference android:title="@string/pref_about" android:key="PREF_ABOUT">
+        <intent android:action="android.intent.action.SettingsActivity" />
+    </Preference>
+</PreferenceScreen>

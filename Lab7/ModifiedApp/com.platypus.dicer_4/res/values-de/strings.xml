@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="abc_action_bar_home_description">Zur Startseite</string>
+    <string name="abc_action_bar_up_description">Nach oben</string>
+    <string name="abc_action_menu_overflow_description">Weitere Optionen</string>
+    <string name="abc_action_mode_done">Fertig</string>
+    <string name="abc_activity_chooser_view_see_all">Alle ansehen</string>
+    <string name="abc_activitychooserview_choose_application">App auswählen</string>
+    <string name="abc_searchview_description_clear">Suchanfrage löschen</string>
+    <string name="abc_searchview_description_query">Suchanfrage</string>
+    <string name="abc_searchview_description_search">Suchen</string>
+    <string name="abc_searchview_description_submit">Suchanfrage senden</string>
+    <string name="abc_searchview_description_voice">Sprachsuche</string>
+    <string name="abc_shareactionprovider_share_with">Freigeben für</string>
+    <string name="abc_shareactionprovider_share_with_application">Freigeben für %s</string>
+    <string name="about_license">Dicer ist lizensiert unter GNU GPLv3.</string>
+    <string name="about_more">Für mehr Informationen: %s</string>
+    <string name="about_version">Dicer Version %1$s (%2$d)</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="app_name">Dicer</string>
+    <string name="button_hide">ausblenden</string>
+    <string name="button_roll">würfeln</string>
+    <string name="button_show">anzeigen</string>
+    <string name="menu_close">Beenden</string>
+    <string name="pref_about">Über</string>
+    <string name="pref_numberofdies_one">1 Würfel</string>
+    <string name="pref_numberofdies_summary">Wähle zwischen einem oder zwei Würfeln</string>
+    <string name="pref_numberofdies_title">Anzahl der Würfel</string>
+    <string name="pref_numberofdies_two">2 Würfel</string>
+    <string name="pref_shaketoroll_summary">Schüttle das Gerät, um zu würfeln.</string>
+    <string name="pref_shaketoroll_title">Schütteln um zu würfeln</string>
+    <string name="pref_vibrate_summary">Vibrieren, wenn Würfel berührt werden.</string>
+    <string name="pref_vibrate_title">Vibrieren</string>
+    <string name="settings">Einstellungen</string>
+    <string name="hide_button">ausblenden</string>
+    <string name="pref_shaketoroll">Schütteln um zu würfeln</string>
+</resources>

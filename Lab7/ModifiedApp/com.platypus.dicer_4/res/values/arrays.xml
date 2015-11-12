@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_numberofdies_listentries">
+        <item>@string/pref_numberofdies_one</item>
+    </string-array>
+    <string-array name="pref_numberofdies_listvalues">
+        <item>1</item>
+    </string-array>
+</resources>
