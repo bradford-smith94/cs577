@@ -1,6 +1,6 @@
 # Bradford Smith (bsmith8)
 # CS 577 Lab 7 report.txt
-# 11/10/2015
+# 11/11/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
@@ -9,7 +9,9 @@ Setup:
 First I had to add `/opt/android-sdk/tools/` to my PATH (this is the location of
 the android sdk tools. Then I had to run `sudo android` to update the android
 sdk targets. I also had to create an android virtual device using the GUI
-provided by `android avd`.
+provided by `android avd`. I created a keystore in the directory
+`Keystore/testkeystore` using `keytool -genkeypair -keystore
+Keystore/testkeystore -alias test` with password 'password'.
 
 Part 1:
 -------
@@ -23,7 +25,16 @@ android virtual device.
 Part 2:
 -------
 Part 2 is in the directory `HelloWorldModified/`. I started by coping
-HelloWorld-debug.apk into the directory.
+HelloWorld-debug.apk into the directory. Fist I needed to run `apktool if
+framework-res.apk` to install the framework for running apktool then I could
+run `apktool d HelloWorld-debug.apk` in order to decompile the apk to get the
+resources and Manifest. I also ran `d2j-dex2jar HelloWorld-debug.apk` which
+produced a jar file, this I opened with `jd-gui` in order to decompile it to
+java sources. After doing modifications I rebuilt the apk using `apktool b
+HelloWorld-debug` and signed the apk with `jarsigner -keystore
+../../../Keystore/testkeystore HelloWorld-debug.apk test`. I was then able to
+install and run it on the android virtual device using `adb install
+HelloWorld-debug.apk`.
 
 Part 3:
 -------
@@ -38,3 +49,4 @@ References:
 [5] davidrodriguez.io/blog/developing-android-apps-in-vim/
 [6] techpad.co.uk/content.php?sid=96
 [7] tutorialspoint.com/android/android_hello_world_example.htm
+[8] forum.xda-developers.com/showthread.php?t=2213985
