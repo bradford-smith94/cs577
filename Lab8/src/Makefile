@@ -1,6 +1,6 @@
 # Bradford Smith (bsmith8)
 # Makefile for CS 577 Lab 8
-# 11/12/2015
+# 11/17/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
@@ -13,7 +13,7 @@ CC=gcc
 RM=rm -f
 INCLPATH=-I../include
 LIBPATH=
-LDLIBS=
+LDLIBS=-lpcap
 LDFLAGS+=
 # implicit compiling rules:
 # C complied with: `$(CC) -c $(CPPFLAGS) $(CFLAGS)`
