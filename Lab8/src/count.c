@@ -1,23 +1,32 @@
 /* Bradford Smith (bsmith8)
  * CS 577 Lab 8 count.c
- * 11/18/2015
+ * 11/19/2015
  * "I pledge my honor that I have abided by the Stevens Honor System."
  */
 
 #include "sniffer.h"
 
-/* pre: takes in a pcap_t* pcap, struct pcap_pkthdr hdr, and three unsigned
- *      int*'s ip, tcp and udp
- * post: loop through the packets in pcap and update the counts of ip, tcp and
- *      udp with the number of those packet types found
+/* pre: takes in a pcap_t* pcap and a struct pcap_pkthdr hdr
+ * post: loop through the packets in pcap and count the number of ip, tcp and
+ *      udp packets, then print out the counts
  */
-void count(pcap_t *pcap, struct pcap_pkthdr hdr, unsigned int *ip,
-        unsigned int *tcp, unsigned int *udp, unsigned int *other)
+void count(pcap_t *pcap, struct pcap_pkthdr hdr)
 {
+    unsigned int tcp;
+    unsigned int udp;
+    unsigned int ip;
+    unsigned int other;
+
     const unsigned char *packet;
     unsigned char *ptr;
     int ethertype;
     int ether_offset;
+
+    /* initialize counts */
+    tcp = 0;
+    udp = 0;
+    ip = 0;
+    other = 0;
 
     /* loop over all the packets */
     while ((packet = pcap_next(pcap, &hdr)))
@@ -27,11 +36,7 @@ void count(pcap_t *pcap, struct pcap_pkthdr hdr, unsigned int *ip,
         ethertype = ((int)(ptr[12]) << 8) | (int)ptr[13];
         ether_offset = 0;
 
-        if (ethertype == ETH_P_IP)
-            ether_offset = 14;
-        else if (ethertype == ETH_P_8021Q)
-            ether_offset = 18;
-        else
+        if ((ether_offset = filterEthernet(ethertype)) == -1)
             continue; /* this isn't an ethernet packet */
         ptr += ether_offset;
 
@@ -39,12 +44,23 @@ void count(pcap_t *pcap, struct pcap_pkthdr hdr, unsigned int *ip,
 
         /* check if ip_hdr is IP/TCP/UDP */
         if (ip_hdr->protocol == IPPROTO_TCP) /* if packet is TCP */
-            (*tcp)++;
+            tcp++;
         else if (ip_hdr->protocol == IPPROTO_UDP) /* if packet is UDP */
-            (*udp)++;
+            udp++;
         else if (ip_hdr->protocol == IPPROTO_IP) /* if packet is other IP */
-            (*ip)++;
+            ip++;
         else
-            (*other)++;
+            other++;
     }
+
+    /* print out counts */
+    printf("Counted:\
+            \n\t%u IP packets\
+            \n\t%u TCP packets\
+            \n\t%u UDP packets\
+            \n\tand %u other ethernet packets\n",
+            ip,
+            tcp,
+            udp,
+            other);
 }

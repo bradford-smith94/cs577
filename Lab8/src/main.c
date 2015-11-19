@@ -1,6 +1,6 @@
 /* Bradford Smith (bsmith8)
  * CS 577 Lab 8 main.c
- * 11/18/2015
+ * 11/19/2015
  * "I pledge my honor that I have abided by the Stevens Honor System."
  */
 
@@ -12,11 +12,6 @@
  */
 int main(int argc, char** argv)
 {
-    unsigned int ip_count; /* count of IP packets */
-    unsigned int tcp_count; /* count of TCP packets */
-    unsigned int udp_count; /* count of UDP packets */
-    unsigned int other_count; /* count of other packets */
-
     clock_t start; /* time started */
     clock_t end; /* time ended */
     double dtime; /* delta time */
@@ -27,66 +22,83 @@ int main(int argc, char** argv)
     char errbuf[PCAP_ERRBUF_SIZE];
 
     int search_mode; /* flag to check if user specified search */
+    int flows_mode; /* flag to check if user specified flows */
     char* search_pattern; /* search pattern user provided */
 
+    int err_flag; /* flag signalling parameter error */
+
     search_mode = 0;
+    flows_mode = 0;
+    err_flag = 0;
+
+    /* check parameters */
     if (argc < 2)
-    {
-        printf("usage: %s <pcap file>\n", argv[0]);
-        fflush(stdout);
-        exit(1);
-    }
+        err_flag = 1;
     else if (argc > 2)
     {
         /* need to check for commands */
-        search_mode = 1;
+        if (strcmp(argv[2], "search") == 0)
+        {
+            search_mode = 1;
+            if (argc != 4)
+                err_flag = 1;
+            else
+                search_pattern = argv[3];
+        }
+        else if (strcmp(argv[2], "flows") == 0)
+        {
+            flows_mode = 1;
+            if (argc != 3)
+                err_flag = 1;
+        }
+        else
+            err_flag = 1;
+    }
+    if (err_flag)
+    {
+        printf("usage: %s <pcap file> [search <pattern> | flows]\n", argv[0]);
+        fflush(stdout);
+        exit(1);
     }
 
     /* open the pcap file */
     if ((pcapfd = pcap_open_offline(argv[1], errbuf)) == NULL)
     {
-        printf("Cannot open pcap file!\n");
+        printf("[ERROR]\tCannot open pcap file: %s\n", argv[1]);
         fflush(stdout);
         exit(1);
     }
 
-    /* initialize counts */
-    ip_count = 0;
-    tcp_count = 0;
-    udp_count = 0;
-    other_count = 0;
-
     /* start timed code here */
     start = clock();
 
+    /* check mode flags and execute */
     if (search_mode)
     {
-        search(pcapfd, header, search_pattern, &ip_count, &tcp_count, &udp_count, &other_count);
+#ifdef DEBUG
+        printf("Search mode pattern: %s\n", search_pattern);
+#endif
+        search(pcapfd, header, search_pattern);
+    }
+    else if (flows_mode)
+    {
+#ifdef DEBUG
+        printf("Flows finding mode\n");
+#endif
     }
     else
     {
-        /* count will update the counts of the integers */
-        count(pcapfd, header, &ip_count, &tcp_count, &udp_count, &other_count);
+#ifdef DEBUG
+        printf("Packet counting mode\n");
+#endif
+        count(pcapfd, header);
     }
 
     /* end timed code here */
     end = clock();
 
-    /* calculate time difference */
+    /* calculate time difference and print results*/
     dtime = ((double)(end - start)) / CLOCKS_PER_SEC;
-
-    printf("Counted:\
-            \n\t%u IP packets\
-            \n\t%u TCP packets\
-            \n\t%u UDP packets\
-            \n\tand %u other ethernet packets\
-            \nin %f seconds.\n",
-            ip_count,
-            tcp_count,
-            udp_count,
-            other_count,
-            dtime);
-
     printf("Execution took %f seconds.\n", dtime);
 
     return 0;
