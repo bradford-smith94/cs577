@@ -1,6 +1,6 @@
 /* Bradford Smith (bsmith8)
  * CS 577 Lab 8 sniffer.h
- * 11/17/2015
+ * 11/18/2015
  * "I pledge my honor that I have abided by the Stevens Honor System."
  */
 
@@ -14,7 +14,7 @@
 
 #include <time.h>
 
-#include <pcap.h>
+#include <pcap/pcap.h>
 #include <arpa/inet.h>
 #include <netinet/ip.h>
 #include <linux/if_ether.h> /* provides constants for common EtherTypes */
@@ -26,9 +26,12 @@
 
 /* This is the header for the pcap sniffer program for Lab 8 */
 
-int main(int, char**);
+int     main(int, char**);
+void    count(pcap_t*, struct pcap_pkthdr, unsigned int*, unsigned int*,
+        unsigned int*);
+void    search(pcap_t*, struct pcap_pkthdr, /* TODO:search param, */unsigned int*);
 
-/* Libpcap functions
+/* useful libpcap functions:
  * pcap_open_offline()
  * pcap_loop()
  * pcap_next()

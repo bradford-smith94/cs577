@@ -1,13 +1,13 @@
 # Bradford Smith (bsmith8)
 # Makefile for CS 577 Lab 8
-# 11/17/2015
+# 11/18/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
 PRG=sniffer
 AUTHOR=bsmith8
 PROJECT=cs577-lab8
-SRC=main.c
+SRC=main.c count.c
 OBJ=$(SRC:.c=.o)
 CC=gcc
 RM=rm -f
