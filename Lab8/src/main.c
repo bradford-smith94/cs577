@@ -15,18 +15,21 @@ int main(int argc, char** argv)
     unsigned int ip_count; /* count of IP packets */
     unsigned int tcp_count; /* count of TCP packets */
     unsigned int udp_count; /* count of UDP packets */
-    unsigned int match_count; /* count of search matches */
+    unsigned int other_count; /* count of other packets */
 
     clock_t start; /* time started */
     clock_t end; /* time ended */
     double dtime; /* delta time */
 
     struct pcap_pkthdr header; /* packet header */
-    const unsigned char *packet; /* full packet */
 
-    pcap_t* pcapfd;
+    pcap_t* pcapfd; /* points to global pcap file header */
     char errbuf[PCAP_ERRBUF_SIZE];
 
+    int search_mode; /* flag to check if user specified search */
+    char* search_pattern; /* search pattern user provided */
+
+    search_mode = 0;
     if (argc < 2)
     {
         printf("usage: %s <pcap file>\n", argv[0]);
@@ -36,12 +39,10 @@ int main(int argc, char** argv)
     else if (argc > 2)
     {
         /* need to check for commands */
-        printf("usage: %s <pcap file>\n", argv[0]);
-        printf("more advanced functionality not implemented yet\n");
-        fflush(stdout);
-        exit(1);
+        search_mode = 1;
     }
 
+    /* open the pcap file */
     if ((pcapfd = pcap_open_offline(argv[1], errbuf)) == NULL)
     {
         printf("Cannot open pcap file!\n");
@@ -53,13 +54,20 @@ int main(int argc, char** argv)
     ip_count = 0;
     tcp_count = 0;
     udp_count = 0;
-    match_count = 0;
+    other_count = 0;
 
     /* start timed code here */
     start = clock();
 
-    /* count will update the counts of the integers */
-    count(pcapfd, header, &ip_count, &tcp_count, &udp_count);
+    if (search_mode)
+    {
+        search(pcapfd, header, search_pattern, &ip_count, &tcp_count, &udp_count, &other_count);
+    }
+    else
+    {
+        /* count will update the counts of the integers */
+        count(pcapfd, header, &ip_count, &tcp_count, &udp_count, &other_count);
+    }
 
     /* end timed code here */
     end = clock();
@@ -67,11 +75,19 @@ int main(int argc, char** argv)
     /* calculate time difference */
     dtime = ((double)(end - start)) / CLOCKS_PER_SEC;
 
-    printf("Processed: %u IP packets, %u TCP packets, and %u UDP packets in %f seconds.\n",
+    printf("Counted:\
+            \n\t%u IP packets\
+            \n\t%u TCP packets\
+            \n\t%u UDP packets\
+            \n\tand %u other ethernet packets\
+            \nin %f seconds.\n",
             ip_count,
             tcp_count,
             udp_count,
+            other_count,
             dtime);
+
+    printf("Execution took %f seconds.\n", dtime);
 
     return 0;
 }

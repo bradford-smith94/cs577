@@ -28,8 +28,9 @@
 
 int     main(int, char**);
 void    count(pcap_t*, struct pcap_pkthdr, unsigned int*, unsigned int*,
-        unsigned int*);
-void    search(pcap_t*, struct pcap_pkthdr, /* TODO:search param, */unsigned int*);
+        unsigned int*, unsigned int*);
+void    search(pcap_t*, struct pcap_pkthdr, char*, unsigned int*,
+        unsigned int*, unsigned int*, unsigned int*);
 
 /* useful libpcap functions:
  * pcap_open_offline()

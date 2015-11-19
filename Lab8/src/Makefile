@@ -7,7 +7,7 @@
 PRG=sniffer
 AUTHOR=bsmith8
 PROJECT=cs577-lab8
-SRC=main.c count.c
+SRC=main.c count.c search.c
 OBJ=$(SRC:.c=.o)
 CC=gcc
 RM=rm -f

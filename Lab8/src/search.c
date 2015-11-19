@@ -11,7 +11,8 @@
  * post: checks all packets in pcap to see if they are a match and increments
  *      the number of matches pointed to by matches
  */
-void search(pcap_t *pcap, struct pcap_pkthdr hdr, /* TODO:search param, */unsigned int *matches)
+void search(pcap_t *pcap, struct pcap_pkthdr hdr, char *pattern, unsigned int *ip,
+        unsigned int *tcp, unsigned int *udp, unsigned int *other)
 {
     const unsigned char *packet;
     unsigned char *ptr;
@@ -37,7 +38,5 @@ void search(pcap_t *pcap, struct pcap_pkthdr hdr, /* TODO:search param, */unsign
         struct ip *ip_hdr = (struct ip *)ptr; /* ip header struct */
 
         /* TODO: check if match */
-        if (0)
-            (*matches)++;
     }
 }

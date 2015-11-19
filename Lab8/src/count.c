@@ -12,8 +12,7 @@
  *      udp with the number of those packet types found
  */
 void count(pcap_t *pcap, struct pcap_pkthdr hdr, unsigned int *ip,
-        unsigned int *tcp,
-        unsigned int *udp)
+        unsigned int *tcp, unsigned int *udp, unsigned int *other)
 {
     const unsigned char *packet;
     unsigned char *ptr;
@@ -45,5 +44,7 @@ void count(pcap_t *pcap, struct pcap_pkthdr hdr, unsigned int *ip,
             (*udp)++;
         else if (ip_hdr->protocol == IPPROTO_IP) /* if packet is other IP */
             (*ip)++;
+        else
+            (*other)++;
     }
 }
