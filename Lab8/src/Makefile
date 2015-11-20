@@ -7,7 +7,7 @@
 PRG=sniffer
 AUTHOR=bsmith8
 PROJECT=cs577-lab8
-SRC=main.c filterEthernet.c hexify.c count.c search.c
+SRC=main.c filterEthernet.c hexify.c count.c search.c flows.c node.c
 OBJ=$(SRC:.c=.o)
 CC=gcc
 RM=rm -f

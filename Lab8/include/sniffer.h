@@ -36,6 +36,15 @@ struct hexed
     size_t len;
 };
 
+/* linked list of tcp packets */
+struct node
+{
+    struct iphdr *ip;
+    struct tcphdr *tcp;
+    struct node *n;
+    struct node *p;
+};
+
 /* This is the header for the pcap sniffer program for Lab 8 */
 
 int             main(int, char**);
@@ -43,12 +52,9 @@ int             filterEthernet(int);
 struct hexed    hexify(char*);
 void            count(pcap_t*, struct pcap_pkthdr);
 void            search(pcap_t*, struct pcap_pkthdr, char*);
-
-/* useful libpcap functions:
- * pcap_open_offline()
- * pcap_loop()
- * pcap_next()
- * pcap_create()
- */
+void            flows(pcap_t*, struct pcap_pkthdr);
+struct node*    newNode(struct tcphdr*, struct iphdr*);
+void            addNode(struct node**, struct node*);
+void            deleteNode(struct node**, struct node*);
 
 #endif /* _SNIFFER_H_ */

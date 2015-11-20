@@ -85,6 +85,7 @@ int main(int argc, char** argv)
 #ifdef DEBUG
         printf("Flows finding mode\n");
 #endif
+        flows(pcapfd, header);
     }
     else
     {

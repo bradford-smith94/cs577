@@ -52,7 +52,7 @@ void search(pcap_t *pcap, struct pcap_pkthdr hdr, char *pattern)
             if (ip_hdr->protocol == IPPROTO_TCP) /* if packet is TCP */
             {
                 struct tcphdr *tcp_hdr = (struct tcphdr*)ip_hdr;
-                printf("TCP %s:%d %s:%d %d\n",
+                printf("TCP %s:%d %s:%d %u\n",
                         inet_ntoa((*(struct in_addr*)&ip_hdr->saddr)),
                         tcp_hdr->source,
                         inet_ntoa((*(struct in_addr*)&ip_hdr->daddr)),
@@ -63,7 +63,7 @@ void search(pcap_t *pcap, struct pcap_pkthdr hdr, char *pattern)
             else if (ip_hdr->protocol == IPPROTO_UDP) /* if packet is UDP */
             {
                 struct udphdr *udp_hdr = (struct udphdr*)ip_hdr;
-                printf("UDP %s:%d %s:%d %d\n",
+                printf("UDP %s:%d %s:%d %u\n",
                         inet_ntoa((*(struct in_addr*)&ip_hdr->saddr)),
                         udp_hdr->source,
                         inet_ntoa((*(struct in_addr*)&ip_hdr->daddr)),
@@ -73,7 +73,7 @@ void search(pcap_t *pcap, struct pcap_pkthdr hdr, char *pattern)
             }
             else if (ip_hdr->protocol == IPPROTO_IP) /* if packet is other IP */
             {
-                printf("IP %s %s %d\n",
+                printf("IP %s %s %u\n",
                         inet_ntoa((*(struct in_addr*)&ip_hdr->saddr)),
                         inet_ntoa((*(struct in_addr*)&ip_hdr->daddr)),
                         ip_hdr->id);

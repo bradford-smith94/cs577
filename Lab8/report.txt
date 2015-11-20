@@ -12,7 +12,9 @@ packets in order to check if they are TCP, UDP or other IP protocol packets.
 The second module for searching the pcap file is run using `./sniffer <pcap>
 search <pattern>`. It opens and loops through the pcap file, skipping over
 packets that are not ethernet packets, then checks to see if data in the packet
-matches the provided hex string pattern.
+matches the provided hex string pattern using `memmem`.
 
 The third module for locating TCP flows using SSL/TLS is run using `./sniffer
-<pcap> flows`.
+<pcap> flows`. It opens and loops through the pcap file, skipping over any
+packets that are not TCP packets, then checks to see if they contain an SSL/TLS
+connection using `memmem`.
