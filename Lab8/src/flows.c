@@ -6,11 +6,13 @@
 
 #include "sniffer.h"
 
-/* pre: takes in a pcap_t* pcap and a struct pcap_pkthdr hdr
+/* pre: takes in a pcap_t* pcap, a struct pcap_pkthdr hdr and an int
+ *      reconstruct
  * post: loop through the packets in pcap and search for SSL/TLS flows in the
- *      TCP packets
+ *      TCP packets, if reconstruct is not zero a linked list will be used in
+ *      attempt to reconstruct and differentiate TCP flows
  */
-void flows(pcap_t *pcap, struct pcap_pkthdr hdr)
+void flows(pcap_t *pcap, struct pcap_pkthdr hdr, int reconstruct)
 {
     unsigned int flows;
 
@@ -27,7 +29,13 @@ void flows(pcap_t *pcap, struct pcap_pkthdr hdr)
         "17 03 00", "17 03 01",
         "17 03 02", "17 03 03"};
     int i;
+    int max;
     struct hexed s_hex;
+    struct node *head;
+    struct node *node;
+
+    if (reconstruct)
+        head = newNode(NULL, NULL);
 
     flows = 0;
 
@@ -59,16 +67,27 @@ void flows(pcap_t *pcap, struct pcap_pkthdr hdr)
             /* if this is SSL/TLS packet */
             if (memmem(packet, ip_hdr->tot_len, s_hex.bytes, s_hex.len) != NULL)
             {
-                printf("%s:%d %s:%d %u\n",
-                        inet_ntoa((*(struct in_addr*)&ip_hdr->saddr)),
-                        tcp_hdr->source,
-                        inet_ntoa((*(struct in_addr*)&ip_hdr->daddr)),
-                        tcp_hdr->dest,
-                        ip_hdr->id);
-                flows++;
+                if (!reconstruct)
+                {
+                    printf("%s:%d %s:%d %u\n",
+                            inet_ntoa((*(struct in_addr*)&ip_hdr->saddr)),
+                            tcp_hdr->source,
+                            inet_ntoa((*(struct in_addr*)&ip_hdr->daddr)),
+                            tcp_hdr->dest,
+                            ip_hdr->id);
+                    flows++;
+                }
+                else
+                    addNode(&head, newNode(tcp_hdr, ip_hdr));
                 break; /* don't need to check other patterns if we get a match */
             }
         }
+    }
+
+    if (reconstruct)
+    {
+        /* sort by tcp seq */
+        /* list is too bare-bones to sort :( */
     }
 
     printf("SSL/TLS Flows Discovered: %u\n",

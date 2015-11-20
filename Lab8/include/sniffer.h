@@ -7,7 +7,7 @@
 #ifndef _SNIFFER_H_
 #define _SNIFFER_H_
 
-#define _GNU_SOURCE /* for memem */
+#define _GNU_SOURCE /* for memmem */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -52,7 +52,7 @@ int             filterEthernet(int);
 struct hexed    hexify(char*);
 void            count(pcap_t*, struct pcap_pkthdr);
 void            search(pcap_t*, struct pcap_pkthdr, char*);
-void            flows(pcap_t*, struct pcap_pkthdr);
+void            flows(pcap_t*, struct pcap_pkthdr, int);
 struct node*    newNode(struct tcphdr*, struct iphdr*);
 void            addNode(struct node**, struct node*);
 void            deleteNode(struct node**, struct node*);

@@ -21,10 +21,15 @@ struct node* newNode(struct tcphdr *tcp, struct iphdr *ip)
 
 void addNode(struct node **head, struct node *add)
 {
-    while ((*head)->n != NULL)
-        (*head)++;
-    (*head)->n = add;
-    add->p = (*head);
+    if ((*head)->ip == NULL)
+        (*head) = add;
+    else
+    {
+        while ((*head)->n != NULL)
+            (*head)++;
+        (*head)->n = add;
+        add->p = (*head);
+    }
 }
 
 void deleteNode(struct node **head, struct node *del)

@@ -17,4 +17,11 @@ matches the provided hex string pattern using `memmem`.
 The third module for locating TCP flows using SSL/TLS is run using `./sniffer
 <pcap> flows`. It opens and loops through the pcap file, skipping over any
 packets that are not TCP packets, then checks to see if they contain an SSL/TLS
-connection using `memmem`.
+connection using `memmem`. This prints out any and all SSL/TLS packets and
+counts them. I started work on a more advanced version that put each packet in a
+linked list and would attempt to reconstruct the flow by sorting them by
+sequence number, eliminating duplicate sequence numbers then finding where the
+source and destination addresses change in order to count a new "flow". However,
+my linked list implementation was too stripped-down to allow for easy sorting
+and I ran out of time. This version can still be run by using `./sniffer <pcap>
+flows-r` but it won't print any useful results.

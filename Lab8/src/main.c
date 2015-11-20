@@ -23,12 +23,14 @@ int main(int argc, char** argv)
 
     int search_mode; /* flag to check if user specified search */
     int flows_mode; /* flag to check if user specified flows */
+    int flows_reconstruct; /* flag to enable linked list reconstruction */
     char* search_pattern; /* search pattern user provided */
 
     int err_flag; /* flag signalling parameter error */
 
     search_mode = 0;
     flows_mode = 0;
+    flows_reconstruct = 0;
     err_flag = 0;
 
     /* check parameters */
@@ -45,9 +47,11 @@ int main(int argc, char** argv)
             else
                 search_pattern = argv[3];
         }
-        else if (strcmp(argv[2], "flows") == 0)
+        else if (strcmp(argv[2], "flows") == 0 || strcmp(argv[2], "flows-r") == 0)
         {
             flows_mode = 1;
+            if (strcmp(argv[2], "flows-r") == 0)
+                flows_reconstruct = 1;
             if (argc != 3)
                 err_flag = 1;
         }
@@ -85,7 +89,7 @@ int main(int argc, char** argv)
 #ifdef DEBUG
         printf("Flows finding mode\n");
 #endif
-        flows(pcapfd, header);
+        flows(pcapfd, header, flows_reconstruct);
     }
     else
     {
