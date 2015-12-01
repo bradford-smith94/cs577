@@ -1,0 +1,53 @@
+# Bradford Smith (bsmith8)
+# CS 577 Lab 9 report.txt
+# 12/01/2015
+# "I pledge my honor that I have abided by the Stevens Honor System."
+################################################################################
+
+I chose to write and build the executables from Linux, cross compiling using the
+mingw-gcc compiler. The included Makefile has targets to build the Windows
+executables if the test machine has mingw installed. Also since I was doing
+development on Linux I chose to use ClamAV as my local antivirus scanner.
+
+Part 1:
+-------
+The code for part 1 is included in `src/baseline.c`.
+When run on VirusTotal it received a detection ratio of 5/55.
+When run on the local AV scanner it was...
+
+Part 2:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+
+Part 3:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+
+Part 4:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+
+Part 5:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+
+Part 6:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+
+Part 7:
+-------
+The code for part 1 is included in ``.
+When run on VirusTotal it received a detection ratio of...
+When run on the local AV scanner it was...
+

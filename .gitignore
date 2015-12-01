@@ -5,6 +5,8 @@
 *.aux
 *.log
 
+*.exe
+
 Lab1/src/*.pem
 Lab1/openssl
 Lab1/bin/*
