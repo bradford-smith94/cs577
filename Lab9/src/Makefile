@@ -7,30 +7,34 @@
 PRG=notavirus
 AUTHOR=bsmith8
 PROJECT=cs577-lab9
-SRC=baseline.c
+SRC=baseline.c #packing.c
 OBJ=$(SRC:.c=.o)
 RM=rm -f
 INCLPATH=-I../include
 LIBPATH=
 LDLIBS=
 LDFLAGS+=
+
+# Linux
+# CC=gcc
+# LD=ld
+
+# Windows
+CC=x86_64-w64-mingw32-gcc
+LD=x86_64-w64-mingw32-ld
+
 # implicit compiling rules:
 # C complied with: `$(CC) -c $(CPPFLAGS) $(CFLAGS)`
-CFLAGS+= $(INCLPATH) #-std=c99
+CFLAGS+= $(INCLPATH)
 CPPFLAGS+= #-pedantic-errors -Wall
 DBFLGS= -g -DDEBUG
 
-all: linux
-
-linux: CC=gcc
-linux: LD=ld
-linux: $(OBJ)
+all: $(OBJ)
+ifeq ($(CC),gcc)
 	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(PRG)
-
-win: CC=x86_64-w64-mingw32-gcc
-win: LD=x86_64-w64-mingw32-ld
-win: $(OBJ)
+else
 	$(CC) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(PRG:=.exe)
+endif
 
 debug: fclean
 debug: CPPFLAGS+= $(DBFLGS)
