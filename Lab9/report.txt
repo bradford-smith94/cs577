@@ -9,44 +9,44 @@ mingw-gcc compiler. The included Makefile has targets to build the Windows
 executables if the test machine has mingw installed. Also since I was doing
 development on Linux I chose to use ClamAV as my local antivirus scanner.
 
-Part 1:
--------
+Part 1: baseline.exe
+--------------------
 The code for part 1 is included in `src/baseline.c`.
 When run on VirusTotal it received a detection ratio of 5/55.
 When run on the local AV scanner it was flagged.
 
-Part 2:
--------
+Part 2: packing.exe
+-------------------
 The code for part 2 is included in `src/packing.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
-Part 3:
--------
+Part 3: memory.exe
+------------------
 The code for part 3 is included in `src/memory.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
-Part 4:
--------
+Part 4: cpu.exe
+---------------
 The code for part 4 is included in `src/cpu.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
-Part 5:
--------
+Part 5: name.exe
+----------------
 The code for part 5 is included in `src/name.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
-Part 6:
--------
+Part 6: sleep.exe
+-----------------
 The code for part 6 is included in `src/sleep.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
-Part 7:
--------
+Part 7: key.exe
+---------------
 The code for part 7 is included in `src/key.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
