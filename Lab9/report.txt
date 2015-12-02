@@ -1,6 +1,6 @@
 # Bradford Smith (bsmith8)
 # CS 577 Lab 9 report.txt
-# 12/01/2015
+# 12/02/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
@@ -13,41 +13,41 @@ Part 1:
 -------
 The code for part 1 is included in `src/baseline.c`.
 When run on VirusTotal it received a detection ratio of 5/55.
-When run on the local AV scanner it was ...
+When run on the local AV scanner it was flagged.
 
 Part 2:
 -------
-The code for part 1 is included in ``.
+The code for part 2 is included in `src/packing.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
 Part 3:
 -------
-The code for part 1 is included in ``.
+The code for part 3 is included in `src/memory.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
 Part 4:
 -------
-The code for part 1 is included in ``.
+The code for part 4 is included in `src/cpu.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
 Part 5:
 -------
-The code for part 1 is included in ``.
+The code for part 5 is included in `src/name.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
 Part 6:
 -------
-The code for part 1 is included in ``.
+The code for part 6 is included in `src/sleep.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
 Part 7:
 -------
-The code for part 1 is included in ``.
+The code for part 7 is included in `src/key.c`.
 When run on VirusTotal it received a detection ratio of ...
 When run on the local AV scanner it was ...
 
