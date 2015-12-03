@@ -1,6 +1,6 @@
 # Bradford Smith (bsmith8)
 # CS 577 Lab 9 report.txt
-# 12/02/2015
+# 12/03/2015
 # "I pledge my honor that I have abided by the Stevens Honor System."
 ################################################################################
 
@@ -18,8 +18,8 @@ When run on the local AV scanner it was flagged.
 Part 2: packing.exe
 -------------------
 The code for part 2 is included in `src/packing.c`.
-When run on VirusTotal it received a detection ratio of ...
-When run on the local AV scanner it was ...
+When run on VirusTotal it received a detection ratio of 2/54.
+When run on the local AV scanner it was not flagged.
 
 Part 3: memory.exe
 ------------------
