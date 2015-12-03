@@ -60,8 +60,31 @@ void prettyPrint(unsigned char* hex)
     printf("\n");
 }
 
+char* useMemory()
+{
+    char* ret;
+    ret = (char*)malloc(sizeof(char)*6);
+    ret[0] = 'h';
+    ret[1] = 'e';
+    ret[2] = 'l';
+    ret[3] = 'l';
+    ret[4] = 'o';
+    ret[5] = '\0';
+    return ret;
+}
+
 int main()
 {
+    int i;
+    char* c;
+    for (i = 0; i < 100; i++)
+    {
+        c = useMemory();
+        if (strcmp(c, "hello") != 0)
+            exit(1);
+        free(c);
+    }
+
     unsigned char* unpacked;
 
     unpacked = xorCrypt(packed);
