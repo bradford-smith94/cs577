@@ -30,8 +30,8 @@ When run on the local AV scanner it was *not* flagged.
 Part 4: cpu.exe
 ---------------
 The code for part 4 is included in `src/cpu.c`.
-When run on VirusTotal it received a detection ratio of ...
-When run on the local AV scanner it was ...
+When run on VirusTotal it received a detection ratio of 0/55.
+When run on the local AV scanner it was *not* flagged.
 
 Part 5: name.exe
 ----------------

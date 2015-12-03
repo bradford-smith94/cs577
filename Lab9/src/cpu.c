@@ -37,10 +37,39 @@ unsigned char packed[] =
 "\xe6\x11\xa7\xbd\x97\xd1\x11\x28\x42\x14\x11\x15\x2a\x40\x9b"
 "\x8a\x1d\xbd\x97\x43\x81\x6b\x84\xc7\xb4\x37\xae\x81"; /* 298 bytes */
 
+unsigned char* calcKey()
+{
+    unsigned char* ret;
+    int big = 0;
+    int small = 9526;
+    int diff;
+    int i;
+    int j;
+
+    /* big is number of primes between 1 and 100000 -- 9592*/
+    for (i = 0; i < 100000; i++)
+    {
+        j = 2;
+        while (j <= i)
+        {
+            if (i % j == 0)
+                break;
+            j++;
+        }
+        if (j == i)
+            big++;
+    }
+
+    diff = big - small; /* diff = 66, hex 42 */
+    ret = (unsigned char*)&diff;
+
+    return ret;
+}
+
 unsigned char* xorCrypt(unsigned char* in)
 {
     int i;
-    unsigned char *secret = "\x42";
+    unsigned char *secret = calcKey();
 
     for (i = 0; i < 298; i++)
         in[i] ^= *secret;
