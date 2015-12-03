@@ -1,5 +1,5 @@
 /* Bradford Smith (bsmith8)
- * CS 577 Lab 9 name.c
+ * CS 577 Lab 9 key.c
  * 12/03/2015
  * "I pledge my honor that I have abided by the Stevens Honor System."
  */
@@ -62,7 +62,7 @@ void prettyPrint(unsigned char* hex)
 
 int main(int argc, char** argv)
 {
-    if (strcmp(argv[0], "./name.exe") == 0)
+    if (strcmp(argv[0], "./key.exe") == 0)
     {
         unsigned char* unpacked;
 
