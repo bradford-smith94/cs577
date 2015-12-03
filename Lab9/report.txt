@@ -42,8 +42,8 @@ When run on the local AV scanner it was *not* flagged.
 Part 6: sleep.exe
 -----------------
 The code for part 6 is included in `src/sleep.c`.
-When run on VirusTotal it received a detection ratio of ...
-When run on the local AV scanner it was ...
+When run on VirusTotal it received a detection ratio of 1/54.
+When run on the local AV scanner it was *not* flagged.
 
 Part 7: key.exe
 ---------------
