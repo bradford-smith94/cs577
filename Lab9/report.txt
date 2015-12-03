@@ -36,8 +36,8 @@ When run on the local AV scanner it was ...
 Part 5: name.exe
 ----------------
 The code for part 5 is included in `src/name.c`.
-When run on VirusTotal it received a detection ratio of ...
-When run on the local AV scanner it was ...
+When run on VirusTotal it received a detection ratio of 0/55.
+When run on the local AV scanner it was not flagged.
 
 Part 6: sleep.exe
 -----------------
