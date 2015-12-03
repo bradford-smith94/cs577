@@ -15,11 +15,19 @@ The code for part 1 is included in `src/baseline.c`.
 When run on VirusTotal it received a detection ratio of 5/55.
 When run on the local AV scanner it was flagged.
 
+The low result count is probably due to the shellcode not being "malicious"
+enough to trip the scanners.
+
+
 Part 2: packing.exe
 -------------------
 The code for part 2 is included in `src/packing.c`.
 When run on VirusTotal it received a detection ratio of 2/54.
 When run on the local AV scanner it was *not* flagged.
+
+Even the weak xor encryption that I implemented was enough to pass checks by 3
+out of the 5 that originally detected the code.
+
 
 Part 3: memory.exe
 ------------------
@@ -27,11 +35,20 @@ The code for part 3 is included in `src/memory.c`.
 When run on VirusTotal it received a detection ratio of 2/55.
 When run on the local AV scanner it was *not* flagged.
 
+Using memory seems to not have had any benefit from packing, I allocated and
+checked 100 strings, more might help but probably will not. These scanners
+probably ignore the memory used.
+
+
 Part 4: cpu.exe
 ---------------
 The code for part 4 is included in `src/cpu.c`.
 When run on VirusTotal it received a detection ratio of 0/55.
 When run on the local AV scanner it was *not* flagged.
+
+Using expensive calculations to calculate the decryption secret seems to have
+been enough to completely hide from the scanners on VirusTotal.
+
 
 Part 5: name.exe
 ----------------
@@ -39,15 +56,29 @@ The code for part 5 is included in `src/name.c`.
 When run on VirusTotal it received a detection ratio of 0/55.
 When run on the local AV scanner it was *not* flagged.
 
+Checking for and only decrypting when the program name is the same also seems to
+have completely hidden the code.
+
+
 Part 6: sleep.exe
 -----------------
 The code for part 6 is included in `src/sleep.c`.
 When run on VirusTotal it received a detection ratio of 1/54.
 When run on the local AV scanner it was *not* flagged.
 
+Sleeping with no other tricks has gotten past all but one scanner, I used a
+sleep time of 2 hours and double checked it by also calculating runtime.
+
+
 Part 7: key.exe
 ---------------
 The code for part 7 is included in `src/key.c`.
 When run on VirusTotal it received a detection ratio of 0/55.
 When run on the local AV scanner it was *not* flagged.
+
+To build my "most evasive malware" I used the check for name combined with the
+calculation of the decryption secret. I moved the name if statement into the
+mathematical calculation of the secret, if the comparison is zero it will not
+affect the decryption, if the name doesn't match the comparison won't equal zero
+and will calculate the wrong secret.
 
