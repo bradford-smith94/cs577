@@ -12,3 +12,4 @@ Lab1/openssl
 Lab1/bin/*
 Lab1/lib/*
 Lab1/include/openssl/*
+Lab8/*.pcap
